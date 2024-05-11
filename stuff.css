@@ -1,0 +1,106 @@
+/*const [click, setClick] = useState(0)
+
+  return (
+    <div className='flex items-center justify-center h-[100vh]'>
+      <div className={(click === 1) ? `flex items-center justify-center h-[30vh] w-[30vh] bg-fuchsia-700 transition-colors` : 'flex items-center justify-center h-[100vh]'}>
+        <button
+        onClick={(click === 1) ? ()=>setClick(0) : ()=>setClick(click + 1)}
+        className={classnames({
+          'flex items-center justify-center bg-fuchsia-700 text-white ' : click === 0
+        })}>
+          CLICK THIS
+          </button>
+      </div>
+    </div>
+
+//'flex items-center justify-center bg-fuchsia-700 text-white p-4' : click === 1,
+//'flex items-center justify-center bg-fuchsia-600 text-white p-4' : click === 2,
+//'flex items-center justify-center bg-fuchsia-500 text-white p-4' : click === 3,
+//'flex items-center justify-center bg-fuchsia-400 text-white p-4' : click === 4
+//{classnames({
+//    'flex items-center justify-center h-[100vh]' : true,
+//    'flex items-center justify-center h-[100vh] bg-fuchsia-700 transition-colors' : click === 1,
+// })}
+
+
+/import { useState } from 'react';
+
+const RippleButton = () => {
+  const [ripples, setRipples] = useState([]);
+
+  const handleClick = (event) => {
+    const button = event.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    console.log('Adding ripple:', { x, y, size });
+    setRipples([...ripples, { x, y, size }]);
+  };
+
+  return (
+    <button
+      className="relative py-4 px-8 text-white bg-blue-500 rounded cursor-pointer outline-none transition duration-300 ease-in-out hover:bg-blue-600"
+      onClick={handleClick}
+    >
+      Click me for a ripple effect
+      {ripples.map((ripple, index) => (
+        <span
+          key={index}
+          className={
+            'absolute rounded-full bg-white bg-opacity-70 transform scale-0 animate-rippleAnimation ' +
+            (ripple.size === 0 ? 'scale-100' : '')
+          }
+          style={{ left: ripple.x, top: ripple.y, width: ripple.size, height: ripple.size }}
+        />
+      ))}
+    </button>
+  );
+};
+
+export default RippleButton;
+
+
+/interface Ripple {
+  x: number;
+  y: number;
+  size: number;
+}
+
+const RippleButton = () => {
+  const [ripples, setRipples] = useState<Ripple[]>([]);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const button = event.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    setRipples([...ripples, { x, y, size }]);
+  };
+
+  return (
+    <button
+      className="relative py-4 px-8 text-white bg-blue-500 rounded cursor-pointer outline-none transition duration-300 ease-in-out hover:bg-blue-600"
+      onClick={handleClick}
+    >
+      Click me for a ripple effect
+      {ripples.map((ripple, index) => (
+        <span
+          key={index}
+          className={classnames(
+            'absolute rounded-full bg-white bg-opacity-70 transform scale-0 animate-rippleAnimation',
+            {
+              'scale-100': ripple.size === 0,
+            }
+          )}
+          style={{ left: ripple.x, top: ripple.y, width: ripple.size, height: ripple.size }}
+        />
+      ))}
+    </button>
+  );
+};
+
+export default RippleButton;
