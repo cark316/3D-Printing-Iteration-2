@@ -6,6 +6,8 @@ Page preview:
 
 ![3d-print-2](https://github.com/cark316/3D-Printing-Iteration-2/assets/134771426/14316ac6-a22e-469b-a0f4-fe5c8d65efe4)
 
+![3d-gif](https://github.com/cark316/3D-Printing-Iteration-2/assets/134771426/1dc67400-2735-4a49-a2be-a298caa37052)
+
 ## Getting Started
 
 First, run the development server:
